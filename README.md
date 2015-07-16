@@ -32,3 +32,7 @@ GET   /clients             controllers.Application.clientList(page: Int ?= 1)
 
 #### Parameter with optional value
 GET   /list                controllers.Application.list(dept : Option[Int])
+
+###To run the application : 
+1. Clone the project
+2. activator run
