@@ -17,16 +17,16 @@ GET   /user/:name          controllers.Application.userName(name)
 GET   /files/*name         controllers.Application.file(name)
 
 # Dynamic parts with custom regular expressions
-GET   /items/$id<[0-9]+>   controllers.Application.items(id: Long)
+GET   /items/$id<[0-5]+>   controllers.Application.items(id: Long)
 
 # Extract the page parameter from the path.
-GET   /show/:page          controllers.Application.show(page)
+GET   /show/:page          controllers.Application.showFromPath(page)
 
 # Extract the page parameter from the query string.
-GET   /show                controllers.Application.show(page)
+GET   /show                controllers.Application.showFromQueryString(page)
 
 # Make the value fix for page parameter
-GET   /showfix             controllers.Application.show(page = "home")
+GET   /showfix             controllers.Application.showFix(page = "home")
 
 # Parameter with default values
 GET   /clients             controllers.Application.clientList(page: Int ?= 1)
