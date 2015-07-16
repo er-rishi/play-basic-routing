@@ -1,9 +1,38 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
+# Basic routing
+GET   /                    controllers.Application.index
 
-# Home page
-GET     /                           controllers.Application.index
+# Simple and static routing
+GET   /simple              controllers.Application.simple
+
+# Dynamic routing with type defined (id:Int)
+GET   /client/:id          controllers.Application.clientId(id:Int)
+
+# Dynamic routing with no type defined (name)
+GET   /user/:name          controllers.Application.userName(name)
+
+# Dynamic parts spanning several
+GET   /files/*name         controllers.Application.file(name)
+
+# Dynamic parts with custom regular expressions
+GET   /items/$id<[0-9]+>   controllers.Application.items(id: Long)
+
+# Extract the page parameter from the path.
+GET   /show/:page          controllers.Application.show(page)
+
+# Extract the page parameter from the query string.
+GET   /show                controllers.Application.show(page)
+
+# Make the value fix for page parameter
+GET   /showfix             controllers.Application.show(page = "home")
+
+# Parameter with default values
+GET   /clients             controllers.Application.clientList(page: Int ?= 1)
+
+# Parameter with optional value
+GET   /list                controllers.Application.list(dept : Option[Int])
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET   /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
